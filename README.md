@@ -1,9 +1,8 @@
 # linebot
-
-  [![NPM Version][npm-image]][npm-url]
-  [![NPM Downloads][downloads-image]][downloads-url]
-  [![NPM Dependencies][dependencies-image]][dependencies-url]
-  [![Build][travis-image]][travis-url]  
+[![npm](https://img.shields.io/npm/v/@waynechang65/linebot.svg)](https://www.npmjs.com/package/@waynechang65/linebot)
+[![npm](https://img.shields.io/npm/dm/@waynechang65/linebot.svg)](https://www.npmjs.com/package/@waynechang65/linebot)
+[![Build Status](https://travis-ci.org/WayneChang65/linebot.svg?branch=master)](https://travis-ci.org/WayneChang65/linebot)
+[![GitHub](https://img.shields.io/github/license/waynechang65/linebot.svg)](https://github.com/WayneChang65/linebot/)
 
 ## !!! Remind：This project is a fork originally from [boybundit/linebot](https://github.com/boybundit/linebot). The team seems too busy to maintain this project, so the fork will be maintained continuously here. I will update this module as much as possible when [LINE](https://line.me/en/) releases new APIs.  
 
@@ -531,12 +530,3 @@ Welcome to fork and send Pull Request. Thanks. :)
 [promise-url]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [node-fetch-url]: https://github.com/bitinn/node-fetch
 [buffer-url]: https://nodejs.org/api/buffer.html
-
-[npm-image]: https://img.shields.io/npm/v/linebot.svg
-[npm-url]: https://npmjs.org/package/linebot
-[dependencies-image]: https://david-dm.org/boybundit/linebot.svg
-[dependencies-url]: https://david-dm.org/boybundit/linebot
-[downloads-image]: https://img.shields.io/npm/dm/linebot.svg
-[downloads-url]: https://npmjs.org/package/linebot
-[travis-image]: https://img.shields.io/travis/boybundit/linebot/master.svg
-[travis-url]: https://travis-ci.org/boybundit/linebot

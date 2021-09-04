@@ -22,7 +22,9 @@
     "Messaging",
     "API",
     "chat",
-    "bot"
+    "bot",
+    "linebot",
+    "nodejs"
   ],
   "author": "Wayne Chang",
   "license": "MIT",

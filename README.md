@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/WayneChang65/linebot.svg?branch=master)](https://travis-ci.org/WayneChang65/linebot)
 [![GitHub](https://img.shields.io/github/license/waynechang65/linebot.svg)](https://github.com/WayneChang65/linebot/)
 
-## !!! Remind：This project is a fork originally from [boybundit/linebot](https://github.com/boybundit/linebot). The team seems too busy to maintain this project, so the fork will be maintained continuously here. I will update this module as much as possible when [LINE](https://line.me/en/) releases new APIs.  
+## !!! Remind：This project is a fork originally from [boybundit/linebot](https://github.com/boybundit/linebot). The team seems too busy to maintain this project, so the fork will be maintained continuously here and will update this module as much as possible when [LINE](https://line.me/en/) releases new APIs.  
 
 ## !!! NPM Module：@waynchang65/linebot  
 

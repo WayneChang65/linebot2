@@ -1,6 +1,8 @@
 # linebot
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![npm](https://img.shields.io/npm/v/@waynechang65/linebot.svg)](https://www.npmjs.com/package/@waynechang65/linebot)
+[![npm](https://img.shields.io/npm/dm/@waynechang65/linebot.svg)](https://www.npmjs.com/package/@waynechang65/linebot)
+[![Npm package total downloads](https://badgen.net/npm/dt/@waynechang65/linebot)](https://npmjs.ccom/package/@waynechang65/linebot)
 [![Build Status](https://travis-ci.com/WayneChang65/linebot2.svg?branch=master)](https://travis-ci.com/WayneChang65/linebot2)
 [![GitHub](https://img.shields.io/github/license/waynechang65/linebot.svg)](https://github.com/WayneChang65/linebot/)
 

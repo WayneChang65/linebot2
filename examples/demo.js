@@ -1,10 +1,10 @@
-require('dotenv').config();
+'use strict';
 const linebot = require('../index.js');
 
 const options = {
-   channelId: process.env.CHANNEL_ID_DEMO,
-   channelSecret: process.env.CHANNEL_SECRET_DEMO,
-   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN_DEMO,
+   channelId: process.env.CHANNEL_ID,
+   channelSecret: process.env.CHANNEL_SECRET,
+   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
    verify: true // default=true
 };
 const bot = linebot(options);
@@ -237,6 +237,6 @@ bot.on('beacon', function (event) {
    event.reply('beacon: ' + event.beacon.hwid);
 });
 
-bot.listen('/webhook', process.env.PORT_DEMO || 80, function () {
-   console.log('LineBot is running. Port : ' + (process.env.PORT_DEMO || 80));
+bot.listen('/webhook', process.env.PORT || 80, function () {
+   console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
 });

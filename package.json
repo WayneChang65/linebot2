@@ -1,6 +1,6 @@
 {
   "name": "@waynechang65/linebot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Node.js SDK for the LINE Messaging API",
   "main": "index.js",
   "files": [
@@ -35,7 +35,6 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "debug": "^4.1.1",
-    "dotenv": "^10.0.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {

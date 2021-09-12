@@ -3,6 +3,8 @@ const linebot = require('../index.js');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const endpointToWebHook = 'webhook';
+
 const bot = linebot({
    channelId: process.env.CHANNEL_ID,
    channelSecret: process.env.CHANNEL_SECRET,
@@ -17,7 +19,7 @@ const parser = bodyParser.json({
    }
 });
 
-app.post('/linewebhook', parser, function (req, res) {
+app.post(`/${endpointToWebHook}`, parser, function (req, res) {
    if (!bot.verify(req.rawBody, req.get('X-Line-Signature'))) {
       return res.sendStatus(400);
    }
@@ -34,5 +36,5 @@ bot.on('message', function (event) {
 });
 
 app.listen(process.env.PORT || 80, function () {
-   console.log('LineBot is running.');
+   console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
 });

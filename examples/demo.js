@@ -1,6 +1,8 @@
 'use strict';
 const linebot = require('../index.js');
 
+const endpointToWebHook = 'webhook';
+
 const options = {
    channelId: process.env.CHANNEL_ID,
    channelSecret: process.env.CHANNEL_SECRET,
@@ -237,6 +239,6 @@ bot.on('beacon', function (event) {
    event.reply('beacon: ' + event.beacon.hwid);
 });
 
-bot.listen('/webhook', process.env.PORT || 80, function () {
+bot.listen(`/${endpointToWebHook}`, process.env.PORT || 80, function () {
    console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
 });

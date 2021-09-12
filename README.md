@@ -6,9 +6,9 @@
 [![Build Status](https://travis-ci.com/WayneChang65/linebot2.svg?branch=master)](https://travis-ci.com/WayneChang65/linebot2)
 [![GitHub](https://img.shields.io/github/license/waynechang65/linebot.svg)](https://github.com/WayneChang65/linebot/)
 
-## !!! Remind：This project is a fork originally from [boybundit/linebot](https://github.com/boybundit/linebot). The team seems too busy to maintain this project, so the fork will be maintained continuously here and will update this module as much as possible when [LINE](https://line.me/en/) releases new APIs.  
+## !!! Remind：This project is a fork originally from [boybundit/linebot][boybundit-linebot-url]. The team seems too busy to maintain this project, so the fork will be maintained continuously here and will update this module as much as possible when [LINE][line-offical-url] releases new APIs.  
 
-## !!! NPM Module：[@waynchang65/linebot](https://www.npmjs.com/package/@waynechang65/linebot)  
+## !!! NPM Module：[@waynchang65/linebot][waynechang65-linebot-npm-url]  
 
 🤖 SDK for the LINE Messaging API for Node.js
 - Come with built-in server for quick setup
@@ -31,6 +31,8 @@ $ npm install @waynechang65/linebot --save
 ```js
 const linebot = require('@waynechang65/linebot');
 
+const endpointToWebHook = 'webhook';
+
 let bot = linebot({
   channelId: CHANNEL_ID,
   channelSecret: CHANNEL_SECRET,
@@ -45,16 +47,40 @@ bot.on('message', function (event) {
   });
 });
 
-bot.listen('/linewebhook', 3000);
+bot.listen(`/${endpointToWebHook}`, process.env.PORT || 80, function () {
+   console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
+});
 ```
 
 ### Using with your own [Express.js][express-url] server
 ```js
+const endpointToWebHook = 'webhook';
 const app = express();
 const linebotParser = bot.parser();
-app.post('/linewebhook', linebotParser);
-app.listen(3000);
-```
+app.post(`/${endpointToWebHook}`, linebotParser);  
+app.listen(process.env.PORT || 80, function () {
+   console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
+});  
+```  
+### Using with [AWS Lambda][aws-lambda] service   
+```js
+module.exports.echo = async (event) => {
+   if (bot.verify(event.body, event.headers['x-line-signature'])) {
+      var body = JSON.parse(event.body).events[0];
+      var replyToken = body.replyToken;
+      var userText = body.message.text;
+
+      await bot.reply(replyToken, userText)
+         .then(function (data) {
+            console.log('Success', data);
+         }).catch(function (error) {
+            console.log('Error', error);
+         });
+   } else {
+      console.log('Signature authentication error');
+   }
+};
+```  
 
 See [`examples`](examples) folder for more examples.
 
@@ -522,13 +548,24 @@ event.message.content().then(function (content) {
 
 Welcome to fork and send Pull Request. Thanks. :)  
 
+# Contributors  
+<a href="https://github.com/waynechang65/linebot2/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=waynechang65/linebot2" />
+</a>  
+
+Special thanks to original designer of the linebot project. [boybundit/linebot][boybundit-linebot-url]  
+
 # License
 
   [MIT](LICENSE)
 
+[line-offical-url]: https://line.me/en/
 [express-url]: http://expressjs.com
+[aws-lambda]: https://aws.amazon.com/lambda/
+[waynechang65-linebot-npm-url]: https://www.npmjs.com/package/@waynechang65/linebot
 [webhook-event-url]: https://developers.line.biz/en/reference/messaging-api/#webhooks
 [send-message-url]: https://developers.line.biz/en/reference/messaging-api/#message-objects
 [promise-url]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [node-fetch-url]: https://github.com/bitinn/node-fetch
 [buffer-url]: https://nodejs.org/api/buffer.html
+[boybundit-linebot-url]: https://github.com/boybundit/linebot

@@ -8,7 +8,7 @@
   },
   "rules": {
     "indent": ["error", 3, { "SwitchCase": 1 }],
-    "quotes": ["error", "single"],
+    "quotes": ["error", "single", "backtick"],
     "semi": ["error", "always"],
     "no-console": "off"
   }

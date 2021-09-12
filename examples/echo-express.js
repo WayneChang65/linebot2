@@ -2,6 +2,8 @@
 const linebot = require('../index.js');
 const express = require('express');
 
+const endpointToWebHook = 'webhook';
+
 const bot = linebot({
    channelId: process.env.CHANNEL_ID,
    channelSecret: process.env.CHANNEL_SECRET,
@@ -12,7 +14,7 @@ const app = express();
 
 const linebotParser = bot.parser();
 
-app.post('/linewebhook', linebotParser);
+app.post(`/${endpointToWebHook}`, linebotParser);
 
 bot.on('message', function (event) {
    event.reply(event.message.text).then(function (data) {
@@ -23,5 +25,5 @@ bot.on('message', function (event) {
 });
 
 app.listen(process.env.PORT || 80, function () {
-   console.log('LineBot is running.');
+   console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
 });

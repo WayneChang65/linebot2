@@ -85,6 +85,18 @@ module.exports.echo = async (event) => {
 
 See [`examples`](examples) folder for more examples.
 
+# Docker Container DEMO
+Run the docker container ([waynechang65/linebot][waynechang65-linebot-dockerhub]) of DEMO code (examples/demo.js) from [dockerhub][docker-hub-url] with `CHANNEL_ID`, `CHANNEL_SECRET` and `CHANNEL_ACCESS_TOKEN`. The endpoint is set to be 'webhook' in the docker image.  
+
+```Shell
+sudo docker container run -p 3310:80 \
+-e CHANNEL_ID="163......." \
+-e CHANNEL_SECRET="797...................." \
+-e CHANNEL_ACCESS_TOKEN="srd5..............." \
+wayne/linebot:latest
+```  
+:star_struck: It's also possible to dockerize your bot by modifying the [dockerfile][linebot2-dockerfile].  
+
 # API
 
 ## LineBot object
@@ -609,3 +621,6 @@ Special thanks to original designer of the linebot project. [boybundit/linebot][
 [node-fetch-url]: https://github.com/bitinn/node-fetch
 [buffer-url]: https://nodejs.org/api/buffer.html
 [boybundit-linebot-url]: https://github.com/boybundit/linebot
+[docker-hub-url]: https://hub.docker.com/
+[waynechang65-linebot-dockerhub]: https://hub.docker.com/r/waynechang65/linebot/tags?page=1&ordering=last_updated
+[linebot2-dockerfile]: https://github.com/WayneChang65/linebot2/blob/master/Dockerfile

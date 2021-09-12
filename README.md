@@ -8,7 +8,7 @@
 
 ## !!! Remind：This project is a fork originally from [boybundit/linebot][boybundit-linebot-url]. The team seems too busy to maintain this project, so the fork will be maintained continuously here and will update this module as much as possible when [LINE][line-offical-url] releases new APIs.  
 
-## !!! NPM Module：[@waynchang65/linebot][waynechang65-linebot-npm-url]  
+## :exclamation::exclamation::exclamation: NPM Module：[@waynchang65/linebot][waynechang65-linebot-npm-url]  
 
 🤖 SDK for the LINE Messaging API for Node.js
 - Come with built-in server for quick setup
@@ -26,8 +26,8 @@ Please refer to the official API documents for details.
 $ npm install @waynechang65/linebot --save
 ```
 
-# Usage
-
+# Usage  
+:heavy_exclamation_mark: Notice: Check endpoint of the webhook is the same to 「Webhook URL」 of setting page to LINE Message API. (The demo is 'webhook')  
 ```js
 const linebot = require('@waynechang65/linebot');
 
@@ -50,7 +50,7 @@ bot.on('message', function (event) {
 bot.listen(`/${endpointToWebHook}`, process.env.PORT || 80, function () {
    console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
 });
-```
+```  
 
 ### Using with your own [Express.js][express-url] server
 ```js
@@ -62,7 +62,8 @@ app.listen(process.env.PORT || 80, function () {
    console.log('LineBot is running. Port : ' + (process.env.PORT || 80));
 });  
 ```  
-### Using with [AWS Lambda][aws-lambda] service   
+
+### Using with [AWS Lambda][aws-lambda-url] service   
 ```js
 module.exports.echo = async (event) => {
    if (bot.verify(event.body, event.headers['x-line-signature'])) {
@@ -188,9 +189,7 @@ See: [Event.message.content()](#eventmessagecontent)
 
 ### LineBot.getQuota()
 
-Get the number of messages quota in the current month.
-
-See: [Get the target limit for additional messages](https://developers.line.biz/en/reference/messaging-api/#get-quota)  
+Get the number of messages quota in the current month.  
 
 ### LineBot.getTotalSentMessagesThisMonth()  
 
@@ -198,27 +197,39 @@ Get number of messages sent this month.
 
 ### LineBot.getTotalReplyMessages(date)  
 
-Get number of sent reply messages.    
-
-Default date is yesterday (UTC+9).  
+Get number of sent reply messages.  
+ 
+`date` Date the messages were sent  
+* Format: `yyyyMMdd` (Example: `20210909`)  
+* Timezone: UTC+9  
+* Default date is yesterday (UTC+9).  
 
 ### LineBot.getTotalPushMessages(date)  
 
 Get number of sent push messages.    
 
-Default date is yesterday (UTC+9).  
+`date` Date the messages were sent  
+* Format: `yyyyMMdd` (Example: `20210909`)  
+* Timezone: UTC+9  
+* Default date is yesterday (UTC+9).  
 
 ### LineBot.getTotalBroadcastMessages(date)
 
 Get number of sent broadcast messages.    
 
-Default date is yesterday (UTC+9).  
+`date` Date the messages were sent  
+* Format: `yyyyMMdd` (Example: `20210909`)  
+* Timezone: UTC+9  
+* Default date is yesterday (UTC+9).  
 
 ### LineBot.getTotalMulticastMessages(date)
 
 Get number of sent multicast messages.   
 
-Default date is yesterday (UTC+9).  
+`date` Date the messages were sent  
+* Format: `yyyyMMdd` (Example: `20210909`)  
+* Timezone: UTC+9  
+* Default date is yesterday (UTC+9).  
 
 ## Insight  
 
@@ -226,7 +237,10 @@ Default date is yesterday (UTC+9).
 
 Get number of message deliveries  
 
-Default date is yesterday (UTC+9).  
+`date` Date the messages were sent  
+* Format: `yyyyMMdd` (Example: `20210909`)  
+* Timezone: UTC+9  
+* Default date is yesterday (UTC+9).  
 
 ### LineBot.getFriendDemographicsInsight()  
 
@@ -236,13 +250,18 @@ Get friend demographics
 
 Get the number of users who have added this linebot on or before a specified date.
 
-Default date is yesterday (UTC+9).  
+`date` Date the messages were sent  
+* Format: `yyyyMMdd` (Example: `20210909`)  
+* Timezone: UTC+9  
+* Default date is yesterday (UTC+9).  
 
 ## Users  
 
 ### LineBot.getUserProfile(userId)
 
 Get user profile information of the user.
+
+`userId` User ID that is returned in a webhook event object (e.g. U4af4980629...).  
 
 See: [Event.source.profile()](#eventsourceprofile)  
 
@@ -256,15 +275,23 @@ Get bot info
 
 ### LineBot.getGroupProfile(groupId)  
 
-Get a group profile.
+Get a group profile.  
+
+`groupId` Group ID. Found in the source object of webhook event objects (e.g. Ca56f94637c...).  
+
+See: [Event.source.profile()](#eventsourceprofile)  
 
 ### LineBot.getGroupMembersCount(groupId)  
 
 Get number of users in a group.  
 
+`groupId` Group ID. Found in the source object of webhook event objects (e.g. Ca56f94637c...).  
+
 ### LineBot.getGroupMember(groupId)
 
-Get userId of all members in a group.
+Get userId of all members in a group.  
+
+`groupId` Group ID. Found in the source object of webhook event objects (e.g. Ca56f94637c...).  
 
 See: [Event.source.member()](#eventsourcemember)  
 
@@ -276,15 +303,21 @@ Get user profile of a member in a group.
 
 Leave a group.  
 
+`groupId` Group ID. Found in the source object of webhook event objects (e.g. Ca56f94637c...).  
+
 ## Chatroom  
 
 ### LineBot.getRoomMembersCount(roomId)  
 
 Get number of users in a room.  
 
+`roomId` Room ID. Found in the source object of webhook event objects.  
+
 ### LineBot.getRoomMember(roomId)  
 
 Get userId of all members in a chat room.  
+
+`roomId` Room ID. Found in the source object of webhook event objects.  
 
 See: [Event.source.member()](#eventsourcemember)  
 
@@ -292,10 +325,15 @@ See: [Event.source.member()](#eventsourcemember)
 
 Get user profile of a member in a chat room.  
 
+`roomId` Room ID. Found in the source object of webhook event objects.  
+
+`userId` User ID that is returned in a webhook event object (e.g. U4af4980629...).  
+
 ### LineBot.leaveRoom(roomId)  
 
 Leave a room.  
 
+`roomId` Room ID. Found in the source object of webhook event objects.  
 
 ## Account Link  
 
@@ -303,6 +341,8 @@ Leave a room.
 ### LineBot.getIssueLinkToken(userId)  
 
 Issue link token  
+
+`userId` User ID that is returned in a webhook event object (e.g. U4af4980629...).  
 
 ## Event object
 
@@ -561,7 +601,7 @@ Special thanks to original designer of the linebot project. [boybundit/linebot][
 
 [line-offical-url]: https://line.me/en/
 [express-url]: http://expressjs.com
-[aws-lambda]: https://aws.amazon.com/lambda/
+[aws-lambda-url]: https://aws.amazon.com/lambda/
 [waynechang65-linebot-npm-url]: https://www.npmjs.com/package/@waynechang65/linebot
 [webhook-event-url]: https://developers.line.biz/en/reference/messaging-api/#webhooks
 [send-message-url]: https://developers.line.biz/en/reference/messaging-api/#message-objects

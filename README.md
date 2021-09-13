@@ -275,7 +275,7 @@ Get user profile information of the user.
 
 `userId` User ID that is returned in a webhook event object (e.g. U4af4980629...).  
 
-See: [Event.source.profile()](#eventsourceprofile)  
+See: [Event.source.profile()](#eventsourceprofile), [Event.left.profiles()](#eventleftprofiles)  
 
 ## Bot  
 
@@ -311,6 +311,8 @@ See: [Event.source.member()](#eventsourcemember)
 
 Get user profile of a member in a group.  
 
+See: [Event.joined.profiles()](#eventjoinedprofiles)  
+
 ### LineBot.leaveGroup(groupId)  
 
 Leave a group.  
@@ -340,6 +342,8 @@ Get user profile of a member in a chat room.
 `roomId` Room ID. Found in the source object of webhook event objects.  
 
 `userId` User ID that is returned in a webhook event object (e.g. U4af4980629...).  
+
+See: [Event.joined.profiles()](#eventjoinedprofiles)  
 
 ### LineBot.leaveRoom(roomId)  
 

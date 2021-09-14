@@ -15,6 +15,7 @@ console.log(options);
 bot.on('message', async function (event) {
    console.log(event.message.text);
    let result;
+
    switch (event.message.type) {
       case 'text':
          switch (event.message.text) {
@@ -43,15 +44,20 @@ bot.on('message', async function (event) {
                });
 
             case 'Push':
-               bot.push('U17448c796a01b715d293c34810985a4c', ['Hey!', 'สวัสดี ' + String.fromCharCode(0xD83D, 0xDE01)]);
-               break;
+               return bot.push(
+                  'U480e5cd6a126659e6b07b95661882ee1',
+                  ['Hey!', 'สวัสดี ' + String.fromCharCode(0xD83D, 0xDE01)]);
+
             case 'Push2':
-               bot.push('Cba71ba25dafbd6a1472c655fe22979e2', 'Push to group');
-               break;
+               return bot.push('Cedb278e86630179f19a395f9f7984a62', 'Push to group');
 
             case 'Multicast':
-               bot.push(['U17448c796a01b715d293c34810985a4c', 'Cba71ba25dafbd6a1472c655fe22979e2'], 'Multicast!');
-               break;
+               return bot.push(
+                  [
+                     'U480e5cd6a126659e6b07b95661882ee1',
+                     'Cedb278e86630179f19a395f9f7984a62'
+                  ],
+                  'Multicast!');
 
             case 'Broadcast':
                bot.broadcast('Broadcast!');
@@ -145,10 +151,12 @@ bot.on('message', async function (event) {
          return event.reply('Nice picture! ' + result.toString('hex').substring(0, 32));
 
       case 'video':
-         return event.reply('Nice video!');
+         result = await event.message.content();
+         return event.reply('Nice video!' + result.toString('hex').substring(0, 32));
 
       case 'audio':
-         return event.reply('Nice audio!');
+         result = await event.message.content();
+         return event.reply('Nice audio!' + result.toString('hex').substring(0, 32));
 
       case 'location':
          return event.reply(['That\'s a good location!',
@@ -194,28 +202,28 @@ bot.on('leave', function (event) {
    }
 });
 
-bot.on('memberJoined', function (event) {
-   event.joined.profiles().then(function (profiles) {
-      if (event.source.type === 'group') {
-         event.reply('memberJoined: Welcome to the group.');
-      }
-      if (event.source.type === 'room') {
-         event.reply('memberJoined: Welcome to the room.');
-      }
-      console.log(profiles);
-   });
+bot.on('memberJoined', async function (event) {
+   let result = await event.joined.profiles();
+   
+   if (event.source.type === 'group') {
+      await event.reply('memberJoined: Welcome to the group.');
+   }
+   if (event.source.type === 'room') {
+      event.reply('memberJoined: Welcome to the room.');
+   }
+   console.log(result);
 });
 
-bot.on('memberLeft', function (event) {
-   event.left.profiles().then(function (profiles) {
-      if (event.source.type === 'group') {
-         console.log('memberLeft: Left the group, goodbye.');
-      }
-      if (event.source.type === 'room') {
-         console.log('memberLeft: Left the room, goodbye.');
-      }
-      console.log(profiles);
-   });
+bot.on('memberLeft', async function (event) {
+   let result = await event.left.profiles();   
+
+   if (event.source.type === 'group') {
+      console.log('memberLeft: Left the group, goodbye.');
+   }
+   if (event.source.type === 'room') {
+      console.log('memberLeft: Left the room, goodbye.');
+   }
+   console.log(result);
 });
 
 bot.on('postback', function (event) {

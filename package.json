@@ -8,7 +8,7 @@
     "lib/**"
   ],
   "scripts": {
-    "start": "node examples/demo.js",
+    "start": "node examples/demo-es7.js",
     "pretest": "eslint index.js lib/**/*.js test/**/*.js",
     "test": "mocha --timeout 5000 --exit",
     "lint": "eslint index.js lib/**/*.js test/**/*.js examples/**/*.js"

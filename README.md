@@ -39,12 +39,15 @@ let bot = linebot({
   channelAccessToken: CHANNEL_ACCESS_TOKEN
 });
 
-bot.on('message', function (event) {
-  event.reply(event.message.text).then(function (data) {
-    // success
-  }).catch(function (error) {
-    // error
-  });
+bot.on('message', async function (event) {
+  try {
+    result = await event.reply(event.message.text);
+    // Do something here as success
+    console.log('Success', result);
+  } catch (error) {
+    // Do something here to deal with error
+    console.log('Error', error);
+  }
 });
 
 bot.listen(`/${endpointToWebHook}`, process.env.PORT || 80, function () {
@@ -142,15 +145,15 @@ Process incoming webhook request, and raise an event.
 
 Raised when a [Webhook event][webhook-event-url] is received.
 ```js
-bot.on('message',      function (event) { });
-bot.on('follow',       function (event) { });
-bot.on('unfollow',     function (event) { });
-bot.on('join',         function (event) { });
-bot.on('leave',        function (event) { });
-bot.on('memberJoined', function (event) { });
-bot.on('memberLeft',   function (event) { });
-bot.on('postback',     function (event) { });
-bot.on('beacon',       function (event) { });
+bot.on('message',      async function (event) { });
+bot.on('follow',       async function (event) { });
+bot.on('unfollow',     async function (event) { });
+bot.on('join',         async function (event) { });
+bot.on('leave',        async function (event) { });
+bot.on('memberJoined', async function (event) { });
+bot.on('memberLeft',   async function (event) { });
+bot.on('postback',     async function (event) { });
+bot.on('beacon',       async function (event) { });
 ```
 
 ## Message
@@ -379,11 +382,14 @@ This is a shorthand for: `LineBot.reply(event.replyToken, message)`
 
 ```js
 // reply text message
-event.reply('Hello, world').then(function (data) {
-  // success
-}).catch(function (error) {
-  // error
-});
+try {
+  result = await event.reply(event.message.text);
+  // Do something here as success
+  console.log('Success', result);
+} catch (error) {
+  // Do something here to deal with error
+  console.log('Error', error);
+}
 
 // reply multiple text messages
 event.reply(['Hello, world 1', 'Hello, world 2']);
@@ -540,9 +546,8 @@ This is a shorthand for:
   - `LineBot.getRoomMemberProfile(event.source.roomId, event.source.userId)` if bot is in a chat room
 
 ```js
-event.joined.profiles().then(function (profiles) {
-  console.log(profiles);
-});
+let profiles = await event.joined.profiles();
+console.log(profiles);
 ```
 
 ### Event.left.profiles()
@@ -553,9 +558,8 @@ This is a shorthand for:
   - `LineBot.getUserProfile(event.source.userId)` if it is 1:1 chat
 
 ```js
-event.left.profiles().then(function (profiles) {
-  console.log(profiles);
-});
+let profiles = await event.left.profiles();
+console.log(profiles);
 ```
 
 ### Event.source.profile()
@@ -569,9 +573,8 @@ This is a shorthand for:
   - `LineBot.getRoomMemberProfile(event.source.roomId, event.source.userId)` if bot is in a chat room
 
 ```js
-event.source.profile().then(function (profile) {
-  event.reply('Hello ' + profile.displayName);
-});
+let profile = await event.source.profile();
+await event.reply('Hello ' + profile.displayName);
 ```
 
 ### Event.source.member()
@@ -583,9 +586,8 @@ This is a shorthand for:
   - `LineBot.getRoomMember(event.source.roomId)` if bot is in a chat room
 
 ```js
-event.source.member().then(function (member) {
-  console.log(member.memberIds);
-});
+let member = await event.source.member();
+console.log(member.memberIds);
 ```
 
 ### Event.message.content()
@@ -595,9 +597,8 @@ Get image, video, and audio data sent by users as a [Buffer][buffer-url] object.
 This is a shorthand for: `LineBot.getMessageContent(event.message.messageId)`
 
 ```js
-event.message.content().then(function (content) {
-  console.log(content.toString('base64'));
-});
+let content = await event.message.content();
+console.log(content.toString('base64'));
 ```
 
 # Contribution  

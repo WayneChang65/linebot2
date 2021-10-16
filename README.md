@@ -1,4 +1,4 @@
-# linebot
+# linebot2
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![npm](https://img.shields.io/npm/v/@waynechang65/linebot.svg)](https://www.npmjs.com/package/@waynechang65/linebot)
 [![npm](https://img.shields.io/npm/dm/@waynechang65/linebot.svg)](https://www.npmjs.com/package/@waynechang65/linebot)
@@ -6,13 +6,64 @@
 [![Build Status](https://travis-ci.com/WayneChang65/linebot2.svg?branch=master)](https://travis-ci.com/WayneChang65/linebot2)
 [![GitHub](https://img.shields.io/github/license/waynechang65/linebot.svg)](https://github.com/WayneChang65/linebot/)
 
-## !!! Remind：This project is a fork originally from [boybundit/linebot][boybundit-linebot-url]. The team seems too busy to maintain this project, so the fork will be maintained continuously here and will update this module as much as possible when [LINE][line-offical-url] releases new APIs.  
+#### !!! Remind：This project is a fork originally from [boybundit/linebot][boybundit-linebot-url]. The team seems too busy to maintain this project, so the fork will be maintained continuously here and will update this module as much as possible when [LINE][line-offical-url] releases new APIs.  
 
-## :exclamation::exclamation::exclamation: NPM Module：[@waynchang65/linebot][waynechang65-linebot-npm-url]  
+## 🤖 [linebot2][linebot2] is SDK for LINE Messaging API for Node.js
+ * NPM Module：[@waynchang65/linebot][waynechang65-linebot-npm-url]  
 
-🤖 SDK for the LINE Messaging API for Node.js
-- Come with built-in server for quick setup
-- Provide convenient addon functions to [event object](#event-object)
+# :question: Why do we use [linebot2][linebot2]？
+
+# :+1: Reason: Easier and less code
+
+## :mag_right: Comparison between @line/line-bot-sdk-nodejs(official) and @waynechang65/linebot2
+
+### Compared modules
+ * [line-bot-sdk-nodejs][line-bot-sdk-nodejs]：LINE official Message API SDK for node.js
+ * [linebot2][linebot2]：Unofficial Message API SDK for node.js and maintained by [WayneChang65](https://github.com/WayneChang65) with [Github](https://github.com/) community.  
+### Comparison  
+ * Base：The simplest echo example. Input text and the bot echos the same text.  
+ 
+ * Example code：[line-bot-sdk-nodejs](https://github.com/line/line-bot-sdk-nodejs/blob/next/examples/echo-bot/index.js)(official) and [linebot2](https://github.com/WayneChang65/linebot2/blob/master/examples/echo-express-es7.js) respective simple echo example file on github repo.  
+
+### 3 parts of the code for the comparison  
+ * Part 1: It includes declaration and initialization of used modules, secret and access token of LINE account. Result of the comparison of this part is **almost the same** between 2 modules.  
+<p align="center">
+  <img src="https://raw.githubusercontent.com/WayneChang65/linebot2/master/img/part1.png">
+</p>  
+
+ * Part 3: It includes port number setting. Result of the comparison of this part is **almost the same** between 2 modules.  
+<p align="center">
+  <img src="https://raw.githubusercontent.com/WayneChang65/linebot2/master/img/part3.png">
+</p>  
+
+ * Part 2: Going back to the second part, this part is also the place where exists a big difference.  
+     * Event handling  
+         * line-bot-sdk-nodejs(official)：Yes, users must deal with the distribution of events by Promise.all
+         * linebot2：No need.   
+     * Handling unused event messages
+         * line-bot-sdk-nodejs(official)：Yes, uses must care about and filter out unused event messages.  
+         * linebot2：No need. 
+     * Deal with the message object
+         * line-bot-sdk-nodejs(official)：Yes, users must write code for the return message object.  
+         * linebot2：No need. 
+     * Use reply token
+         * line-bot-sdk-nodejs(official)：Yes, users must understand what a reply token is, and they must enclose the reply token when sending messages. 
+         * linebot2：No need. (It’s okay even if the user doesn’t understand what a reply token is)  
+     * Call express api directly
+         * line-bot-sdk-nodejs(official)：Yes, users must call express api like status(500).end() when error occurs.  
+         * linebot2：No need. (It’s okay even if the user isn't familier with express)
+     * Way to handle event messages
+         * line-bot-sdk-nodejs(official)：Included in app.post function and make the programming complicated.
+         * linebot2：Use bot.on function to deal with events and make the programming neat and easy.  
+     * Use [express](https://github.com/expressjs/express)
+         * line-bot-sdk-nodejs(official)：Yes, users must use [express](https://github.com/expressjs/express) for using the SDK.  
+         * linebot2：No need. (Provide built-in server and make it slim)  
+<p align="center">
+  <img src="https://raw.githubusercontent.com/WayneChang65/linebot2/master/img/part2.png">
+</p>  
+
+### Conclusion
+linebot2 is easier and less code.  
 
 # About LINE Messaging API
 
@@ -629,3 +680,5 @@ Special thanks to original designer of the linebot project. [boybundit/linebot][
 [docker-hub-url]: https://hub.docker.com/
 [waynechang65-linebot-dockerhub]: https://hub.docker.com/r/waynechang65/linebot/tags?page=1&ordering=last_updated
 [linebot2-dockerfile]: https://github.com/WayneChang65/linebot2/blob/master/Dockerfile
+[linebot2]: https://github.com/WayneChang65/linebot2/
+[line-bot-sdk-nodejs]: https://github.com/line/line-bot-sdk-nodejs

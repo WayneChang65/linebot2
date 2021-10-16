@@ -37,27 +37,27 @@
 </p>  
 
  * Part 2: Going back to the second part, this part is also the place where exists a big difference.  
-     * Event handling  
+     * **Event handling**  
          * line-bot-sdk-nodejs(official)：Yes, users must deal with the distribution of events by Promise.all
          * linebot2：No need.   
-     * Handling unused event messages
+     * **Handling unused event messages**  
          * line-bot-sdk-nodejs(official)：Yes, uses must care about and filter out unused event messages.  
          * linebot2：No need. 
-     * Deal with the message object
+     * **Deal with the message object**  
          * line-bot-sdk-nodejs(official)：Yes, users must write code for the return message object.  
          * linebot2：No need. 
-     * Use reply token
+     * **Use reply token**  
          * line-bot-sdk-nodejs(official)：Yes, users must understand what a reply token is, and they must enclose the reply token when sending messages. 
          * linebot2：No need. (It’s okay even if the user doesn’t understand what a reply token is)  
-     * Call express api directly
+     * **Call express api directly**  
          * line-bot-sdk-nodejs(official)：Yes, users must call express api like status(500).end() when error occurs.  
          * linebot2：No need. (It’s okay even if the user isn't familier with express)
-     * Way to handle event messages
+     * **Way to handle event messages**  
          * line-bot-sdk-nodejs(official)：Included in app.post function and make the programming complicated.
          * linebot2：Use bot.on function to deal with events and make the programming neat and easy.  
-     * Use [express](https://github.com/expressjs/express)
-         * line-bot-sdk-nodejs(official)：Yes, users must use [express](https://github.com/expressjs/express) for using the SDK.  
-         * linebot2：No need. (Provide built-in server and make it slim)  
+     * **Use [express][express-url]**  
+         * line-bot-sdk-nodejs(official)：Yes, users must use [express][express-url] for using the official SDK.  
+         * linebot2：No absolutely need. (Provide built-in server to optionally use and make it slim)  
 <p align="center">
   <img src="https://raw.githubusercontent.com/WayneChang65/linebot2/master/img/part2.png">
 </p>  

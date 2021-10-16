@@ -45,7 +45,7 @@
          * linebot2：No need. 
      * **Deal with the message object**  
          * line-bot-sdk-nodejs(official)：Yes, users must write code for the return message object.  
-         * linebot2：No need. 
+         * linebot2：No absolutely need. 
      * **Use reply token**  
          * line-bot-sdk-nodejs(official)：Yes, users must understand what a reply token is, and they must enclose the reply token when sending messages. 
          * linebot2：No need. (It’s okay even if the user doesn’t understand what a reply token is)  

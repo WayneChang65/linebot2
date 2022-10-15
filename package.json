@@ -1,6 +1,6 @@
 {
   "name": "@waynechang65/linebot",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Node.js SDK for the LINE Messaging API",
   "main": "index.js",
   "files": [
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "eslint": "^7.3.0",
-    "mocha": "^8.0.1",
+    "mocha": "^9.1.4",
     "nock": "^12.0.3"
   }
 }
